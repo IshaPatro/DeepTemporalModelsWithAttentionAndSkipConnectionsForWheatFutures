@@ -2,9 +2,11 @@
 __pycache__/
 *.py[codz]
 *$py.class
+DeepTemporalModelsWithAttentionAndSkipConnectionsForWheatFutures_venv/
 
 # C extensions
 *.so
+.DS_Store
 
 # Distribution / packaging
 .Python
