@@ -292,6 +292,15 @@ def main() -> None:
     df = pd.read_csv(args.input)
     print(f"[INFO] Loaded {len(df)} articles")
 
+    # Remove duplicates: same title AND source
+    n_before = len(df)
+    df = df.drop_duplicates(subset=["title", "source"], keep="first")
+    n_after = len(df)
+    n_dupes = n_before - n_after
+    if n_dupes > 0:
+        print(f"[INFO] Removed {n_dupes} duplicate(s) with same title & source")
+    df = df.reset_index(drop=True)
+
     # Convert date column → datetime → calendar day string
     df["date"]     = pd.to_datetime(df["date"])
     df["date_day"] = df["date"].dt.strftime("%Y-%m-%d")
