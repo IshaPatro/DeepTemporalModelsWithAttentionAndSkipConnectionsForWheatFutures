@@ -13,12 +13,12 @@ Steps
   4. Extract sentiment scores via ProsusAI/finbert sentiment classification head.
   5. Aggregate to one (16,) tensor per calendar day (mean-pool multi-article
      days) and one mean sentiment score per day.
-  6. Persist embeddings as dict[str, torch.Tensor] → data/daily_news_embeddings.pt
-     Persist sentiment as CSV → data/daily_news_sentiment.csv
+  6. Persist embeddings as dict[str, torch.Tensor] → data/wheat_news_embeddings.pt
+     Persist sentiment as CSV → data/wheat_news_sentiment.csv
 
 Usage
 ─────
-    python preprocess_news_embeddings.py            # uses GPU if available
+    python preprocess_news_embeddings.py             # uses GPU if available
     python preprocess_news_embeddings.py --cpu       # force CPU
     python preprocess_news_embeddings.py --batch 16  # override batch size
 """
@@ -39,8 +39,8 @@ from sklearn.decomposition import PCA
 # ─── constants ──────────────────────────────────────────────────────────────
 DATA_DIR   = Path(__file__).resolve().parent / "data"
 INPUT_CSV  = DATA_DIR / "wheat_news.csv"
-OUTPUT_PT  = DATA_DIR / "daily_news_embeddings.pt"
-OUTPUT_CSV = DATA_DIR / "daily_news_sentiment.csv"
+OUTPUT_PT  = DATA_DIR / "wheat_news_embeddings.pt"
+OUTPUT_CSV = DATA_DIR / "wheat_news_sentiment.csv"
 
 # FinBERT base model (NOT the sentiment-classification head)
 MODEL_NAME = "ProsusAI/finbert"
