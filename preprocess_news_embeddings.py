@@ -302,7 +302,8 @@ def main() -> None:
     df = df.reset_index(drop=True)
 
     # Convert date column → datetime → calendar day string
-    df["date"]     = pd.to_datetime(df["date"])
+    df["date"]     = pd.to_datetime(df["date"], format='mixed', errors='coerce')
+    df = df.dropna(subset=['date']).reset_index(drop=True)
     df["date_day"] = df["date"].dt.strftime("%Y-%m-%d")
 
     # Build clean_text column
